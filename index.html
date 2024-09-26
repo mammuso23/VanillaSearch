@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Vanilla Weather Search</title>
+    <link rel="stylesheet" href="src/style.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap" rel="stylesheet">
+  </head>
+  <body>
+    <div class="weatherApp">
+    <header>
+      <form class="search-bar">
+      <input type="search" placeholder="Enter a city..." required class="search-bar-input" />
+      <input type="submit" value="Search" class="search-bar-button" />
+      </form>
+    </header>
+    <main>
+      <div class="weatherApp-data">
+      <div>
+      <h1 class="weatherApp-city">Bethlehem</h1>
+      <p class="weatherApp-details">
+        Thursday 19:49, Clear with periodic clouds
+      </br>Humidity: <strong>26%</strong>, Wind: <strong>16km/h</strong>
+    </p>
+      </div>
+     <div class="weatherApp-temperature">
+      <div class="temperature-icon">⛅</div>
+      <div class="temperature-degrees">13 </div>
+      <div class="temperature-unit">°C</div>
+      </div>
+    </main>
+    <script src="app.js"></script>
+    <footer>
+      This project was coded by
+      <a href="https://github.com/mammuso23" target="_blank">Mammuso</a>, code is
+      open-sourced on <a
+        href="https://github.com/mammuso23/VanillaSearch"
+        target="_blank"
+      >
+        Github</a
+      >, and hosted by
+      <a href="https://vanilla1weather.netlify.app/" target="_blank">
+        Netlify.</a
+      >
+    </footer>
+    </div>
+    <script src="src/app.js"></script>
+  </body>
+</html>
