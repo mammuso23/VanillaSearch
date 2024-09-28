@@ -42,7 +42,8 @@ main {
   color: purple;
 }
 .temperature-icon {
-  font-size: 60px;
+  width: 75px;
+  height: 75px;
   font-weight: bold;
 }
 .temperature-unit {
