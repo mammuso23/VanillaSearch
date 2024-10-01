@@ -78,3 +78,34 @@ main {
   padding: 15px 30px;
   color: white;
 }
+.weather-forecast {
+  display: flex;
+  justify-content: space-around;
+  margin-top: 5px;
+}
+.name-of-day {
+  text-align: center;
+  color: purple;
+  font-size: 16px;
+  line-height: 20px;
+  margin-bottom: 5px;
+}
+.day-icon {
+  text-align: center;
+  font-size: 16px;
+  margin-bottom: 5px;
+}
+.day-temperatures {
+  text-align: center;
+  font-size: 16px;
+  display: flex;
+  color: rgb(143, 87, 105);
+  justify-content: center;
+  margin-top: 5px;
+}
+.day-temperatures strong {
+  color: brown;
+}
+.day-temperature {
+  padding: 0 5px;
+}
