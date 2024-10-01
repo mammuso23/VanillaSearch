@@ -23,24 +23,12 @@ function updateWeather(response) {
 function formatDate(date) {
   let hours = date.getHours();
   let minutes = date.getMinutes();
-  let days = [
-    "Sunday",
-    "Monday",
-    "Tuesday",
-    "Wednesday",
-    "Thursday",
-    "Friday",
-    "Saturday",
-  ];
+  let days = [,];
 
   let day = days[date.getDay()];
 
   if (minutes < 10) {
     minutes = `0${minutes}`;
-  }
-
-  if (hours < 10) {
-    hours = `0${hours}`;
   }
 
   return `${day} ${hours}:${minutes}`;
@@ -64,3 +52,26 @@ let formElement = document.querySelector("#search-bar");
 formElement.addEventListener("submit", handleSearchSubmit);
 
 searchCity("Johannesburg");
+
+function displayForecast() {
+  let forecastElement = document.querySelector("#forecast");
+
+  let days = ["Tue", "Wed", "Thu", "Fri", "Sat"];
+  let forecastHtml = "";
+
+  days.forEach(function (day) {
+    forecastHtml =
+      forecastHtml +
+      `<div class="weather-forecast-day">
+            <div class="name-of-day">${day}</div>
+            <div class="day-icon">🌤️</div>
+            <div class="day-temperatures">
+              <div class="day-temperature"><strong>19°</strong></div>
+              <div class="day-temperature">15°</div>
+            </div>
+          </div>`;
+  });
+  forecastElement.innerHTML = forecastHtml;
+}
+
+displayForecast();
