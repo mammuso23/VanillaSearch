@@ -81,7 +81,7 @@ main {
 .weather-forecast {
   display: flex;
   justify-content: space-around;
-  margin-top: 5px;
+  margin-top: 30px;
 }
 .name-of-day {
   text-align: center;
@@ -91,9 +91,10 @@ main {
   margin-bottom: 5px;
 }
 .day-icon {
-  text-align: center;
-  font-size: 16px;
-  margin-bottom: 5px;
+  display: block;
+  width: 55px;
+  height: 55px;
+  margin: 0% auto;
 }
 .day-temperatures {
   text-align: center;
@@ -102,6 +103,7 @@ main {
   color: rgb(143, 87, 105);
   justify-content: center;
   margin-top: 5px;
+  padding: 0 10px;
 }
 .day-temperatures strong {
   color: brown;
