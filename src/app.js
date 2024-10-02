@@ -9,8 +9,6 @@ function updateWeather(response) {
   let date = new Date(response.data.time * 1000);
   let iconElement = document.querySelector("#icon");
 
-  console.log(response.data);
-
   iconElement.innerHTML = `<img class="temperature-icon" src="${response.data.condition.icon_url}">`;
   cityElement.innerHTML = response.data.city;
   timeElement.innerHTML = formatDate(date);
@@ -18,12 +16,22 @@ function updateWeather(response) {
   humidityElement.innerHTML = `${response.data.temperature.humidity}%`;
   descriptionElement.innerHTML = response.data.condition.description;
   temperatureElement.innerHTML = Math.round(temperature);
+
+  getForecast(response.data.city);
 }
 
 function formatDate(date) {
   let hours = date.getHours();
   let minutes = date.getMinutes();
-  let days = [,];
+  let days = [
+    "Sunday",
+    "Monday",
+    "Tuesday",
+    "Wednesday",
+    "Thursday",
+    "Friday",
+    "Saturday",
+  ];
 
   let day = days[date.getDay()];
 
@@ -37,7 +45,7 @@ function formatDate(date) {
 function searchCity(city) {
   //make api call and update UI
   let apiKey = "a1bo4439ac5fc07t02d36e4b34aa3665";
-  let apiUrl = `https://api.shecodes.io/weather/v1/current?query=${city}&key=a1bo4439ac5fc07t02d36e4b34aa3665&units=metric`;
+  let apiUrl = `https://api.shecodes.io/weather/v1/current?query=${city}&key=${apiKey}&units=metric`;
   axios.get(apiUrl).then(updateWeather);
 }
 
@@ -48,30 +56,45 @@ function handleSearchSubmit(event) {
   searchCity(searchInput.value);
 }
 
+function getForecast(city) {
+  let apiKey = "a1bo4439ac5fc07t02d36e4b34aa3665";
+  let apiUrl = `https://api.shecodes.io/weather/v1/forecast?query=${city}&key=${apiKey}&units=metric`;
+  axios.get(apiUrl).then(displayForecast);
+}
+
+function formatDay(timestamp) {
+  let date = new Date(timestamp * 1000);
+
+  let days = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
+
+  return days[date.getDay()];
+}
+
+function displayForecast(response) {
+  let forecastHtml = "";
+
+  response.data.daily.forEach(function (day, index) {
+    if (index < 5) {
+      forecastHtml += `<div class="weather-forecast-day">
+            <div class="name-of-day">${formatDay(day.time)}</div>
+            <img src="${day.condition.icon_url}" class="day-icon"/>
+            <div class="day-temperatures">
+              <div class="day-temperature"><strong>${Math.round(
+                day.temperature.maximum
+              )}°</strong></div>
+              <div class="day-temperature">${Math.round(
+                day.temperature.minimum
+              )}°</div>
+            </div>
+          </div>`;
+    }
+  });
+
+  let forecastElement = document.querySelector("#forecast");
+  forecastElement.innerHTML = forecastHtml;
+}
+
 let formElement = document.querySelector("#search-bar");
 formElement.addEventListener("submit", handleSearchSubmit);
 
 searchCity("Johannesburg");
-
-function displayForecast() {
-  let forecastElement = document.querySelector("#forecast");
-
-  let days = ["Tue", "Wed", "Thu", "Fri", "Sat"];
-  let forecastHtml = "";
-
-  days.forEach(function (day) {
-    forecastHtml =
-      forecastHtml +
-      `<div class="weather-forecast-day">
-            <div class="name-of-day">${day}</div>
-            <div class="day-icon">🌤️</div>
-            <div class="day-temperatures">
-              <div class="day-temperature"><strong>19°</strong></div>
-              <div class="day-temperature">15°</div>
-            </div>
-          </div>`;
-  });
-  forecastElement.innerHTML = forecastHtml;
-}
-
-displayForecast();
